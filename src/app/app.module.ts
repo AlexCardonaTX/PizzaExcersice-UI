@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToppingsModule } from './toppings/toppings.module';
+import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ToppingsModule } from './toppings/toppings.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ToppingsModule
+    ToppingsModule,
+    MdbModalModule
   ],
   providers: [],
   bootstrap: [AppComponent]
