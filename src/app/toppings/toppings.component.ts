@@ -22,6 +22,7 @@ export class ToppingsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.data);
   }
 
 }
