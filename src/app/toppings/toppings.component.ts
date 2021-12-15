@@ -61,7 +61,7 @@ export class ToppingsComponent implements OnInit {
       }
     );
     this.modalRef.onClose.subscribe(response => {
-      if (response.state) {
+      if (response && response.state) {
         this.toppingService.createTopping(response.name).subscribe(
           response => {
           this.toppingService.getAll();
