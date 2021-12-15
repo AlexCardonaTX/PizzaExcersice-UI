@@ -20,13 +20,13 @@ export class ToppingsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.toppingService.getAll();
     this.subscribeToppings();
   }
 
   subscribeToppings(): void {
-    this.toppingService.getAll().subscribe(data => {
-      this.toppings = <Topping[]> data;
-      console.log(this.toppings);
+    this.toppingService.getToppings$().subscribe(data => {
+      this.toppings = data;
     });
   }
 
@@ -35,12 +35,19 @@ export class ToppingsComponent implements OnInit {
       ConfirmDialogComponent,
       { 
         data: { 
-          message: "Are you sure you want to Delete this topping?" 
+          message: "Are you sure you want to Delete this topping?"
         }
       }
     );
-    this.modalRef.onClose.subscribe(state => {
-      console.log(state);
+    this.modalRef.onClose.subscribe(response => {
+      if (response && topping.ingredientId) {
+        this.toppingService.deleteTopping(topping.ingredientId).subscribe(
+          response => {
+          this.toppingService.getAll();
+        }, error => {
+          console.error(error);
+        });
+      }
     });
   }
 
@@ -53,8 +60,15 @@ export class ToppingsComponent implements OnInit {
         }
       }
     );
-    this.modalRef.onClose.subscribe(data => {
-      console.log(data);
+    this.modalRef.onClose.subscribe(response => {
+      if (response.state) {
+        this.toppingService.createTopping(response.name).subscribe(
+          response => {
+          this.toppingService.getAll();
+        }, error => {
+          console.log(response);
+        });
+      }
     });
   }
 

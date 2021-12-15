@@ -1,7 +1,7 @@
 import { PizzaTopping } from "./PizzaTopping";
 
 export class Pizza {
-    public pizzaId: string|undefined;
+    public pizzaId: string|undefined|null;
     public pizzaName: string|undefined;
     public pizzaIngredients: PizzaTopping[]|undefined;
 
