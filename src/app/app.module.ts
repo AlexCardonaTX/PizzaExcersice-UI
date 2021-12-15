@@ -9,6 +9,7 @@ import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { CreateDialogComponent } from './create-dialog/create-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PizzasModule } from './pizzas/pizzas.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ToppingsModule,
     MdbModalModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    PizzasModule
   ],
   providers: [],
   bootstrap: [AppComponent]
