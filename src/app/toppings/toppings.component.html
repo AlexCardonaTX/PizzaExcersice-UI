@@ -16,7 +16,13 @@
           <th scope="row">{{ index+1 }}</th>
           <td>{{topping.ingredientName}}</td>
           <td>
-            <button type="button" class="btn btn-danger">Delete</button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="openDeleteDialog(topping)"
+            >
+              Delete
+            </button>
           </td>
         </tr>
       </tbody>

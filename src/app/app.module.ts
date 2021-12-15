@@ -6,10 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToppingsModule } from './toppings/toppings.module';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
