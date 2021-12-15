@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ToppingsComponent } from './toppings/toppings.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: "/toppings", component: ToppingsComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
