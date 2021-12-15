@@ -1,10 +1,10 @@
 <div class="modal-header">
-  <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+  <h5 class="modal-title">Confirmation</h5>
   <button
     type="button"
     class="btn-close"
     aria-label="Close"
-    (click)="modalRef.close()"
+    (click)="modalRef.close(false)"
     ></button>
 </div>
 <div class="modal-body">{{ message }}</div>

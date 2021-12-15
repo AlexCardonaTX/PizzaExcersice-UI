@@ -3,6 +3,7 @@ import { Topping } from '../models/Topping';
 import { ToppingService } from '../services/topping.service';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { CreateDialogComponent } from '../create-dialog/create-dialog.component';
 
 @Component({
   selector: 'app-toppings',
@@ -40,6 +41,20 @@ export class ToppingsComponent implements OnInit {
     );
     this.modalRef.onClose.subscribe(state => {
       console.log(state);
+    });
+  }
+
+  openCreateDialog(): void {
+    this.modalRef = this.modalService.open(
+      CreateDialogComponent,
+      { 
+        data: { 
+          message: "Topping" 
+        }
+      }
+    );
+    this.modalRef.onClose.subscribe(data => {
+      console.log(data);
     });
   }
 

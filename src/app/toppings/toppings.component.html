@@ -1,7 +1,13 @@
 <div class="toppings__container">
   <div class="toppings__table">
     <div class="toppings__actions">
-      <button type="button" class="btn btn-primary">Add</button>
+      <button 
+        type="button"
+        class="btn btn-primary"
+        (click)="openCreateDialog()"
+      >
+        Add
+      </button>
     </div>
     <table class="table table-hover">
       <thead class="table-dark">

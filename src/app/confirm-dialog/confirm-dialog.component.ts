@@ -11,7 +11,4 @@ export class ConfirmDialogComponent {
 
   constructor(public modalRef: MdbModalRef<ConfirmDialogComponent>) { }
 
-  close(state: boolean): void {
-    this.modalRef.close(state);
-  }
 }
