@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Topping } from '../models/Topping';
+import { ToppingService } from '../services/topping.service';
 
 @Component({
   selector: 'app-toppings',
@@ -8,21 +9,19 @@ import { Topping } from '../models/Topping';
 })
 export class ToppingsComponent implements OnInit {
 
-  data: Topping[] = [
-    {
-      "ingredientId": "82f5462d-b629-478d-898a-1d7ab85e8bdd",
-      "ingredientName": "Extra Cheese"
-    },
-    {
-      "ingredientId": "bbb7ee8a-2caf-4c4e-baea-9ad4da3ac9df",
-      "ingredientName": "Peperonni"
-    }
-  ];
+  toppings: Topping[] = [];
 
-  constructor() { }
+  constructor(private toppingService: ToppingService) { }
 
   ngOnInit(): void {
-    console.log(this.data);
+    this.subscribeToppings();
+  }
+
+  subscribeToppings() {
+    this.toppingService.getAll().subscribe(data => {
+      this.toppings = <Topping[]> data;
+      console.log(this.toppings);
+    });
   }
 
 }

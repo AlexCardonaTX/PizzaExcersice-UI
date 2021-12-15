@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let topping of data; let index=index">
+        <tr *ngFor="let topping of toppings; let index=index">
           <th scope="row">{{ index+1 }}</th>
           <td>{{topping.ingredientName}}</td>
           <td>
