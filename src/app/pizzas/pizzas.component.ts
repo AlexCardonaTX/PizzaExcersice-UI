@@ -3,6 +3,7 @@ import { PizzaService } from '../services/pizza.service';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { CreateDialogComponent } from '../create-dialog/create-dialog.component';
+import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { Pizza } from '../models/Pizza';
 
 @Component({
@@ -82,6 +83,23 @@ export class PizzasComponent implements OnInit {
       
     });
     return names.join(', ');
+  }
+
+  openEditDialog(pizza: Pizza) {
+    const clonePizza = JSON.parse(JSON.stringify(pizza));
+    this.modalRef = this.modalService.open(
+      EditDialogComponent, { data: { pizza: clonePizza } }
+    );
+    this.modalRef.onClose.subscribe(response => {
+      if (response && response.state) {
+        this.pizzaService.createPizza(response.name).subscribe(
+          response => {
+          //this.pizzaService.getAll();
+        }, error => {
+          console.log(response);
+        });
+      }
+    });
   }
 
 }
