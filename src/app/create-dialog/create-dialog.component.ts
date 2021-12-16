@@ -8,14 +8,10 @@ import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
   styleUrls: ['./create-dialog.component.sass']
 })
 export class CreateDialogComponent implements OnInit {
-  validatingForm: FormGroup;
+  validatingForm: FormGroup = new FormGroup({ });
   message?: string;
 
-  constructor(public modalRef: MdbModalRef<CreateDialogComponent>) {
-    this.validatingForm = new FormGroup({
-      Name: new FormControl('', [Validators.required, Validators.maxLength(50)])
-    });
-  }
+  constructor(public modalRef: MdbModalRef<CreateDialogComponent>) { }
 
   ngOnInit(): void {
     this.validatingForm = new FormGroup({
