@@ -92,14 +92,23 @@ export class PizzasComponent implements OnInit {
     );
     this.modalRef.onClose.subscribe(response => {
       if (response && response.state) {
-        this.pizzaService.createPizza(response.name).subscribe(
+        const toppings = this.getToppingsIds(response.newPizza);
+        this.pizzaService.updatePizzaToppings(<string>pizza.pizzaId, toppings).subscribe(
           response => {
-          //this.pizzaService.getAll();
+          this.pizzaService.getAll();
         }, error => {
           console.log(response);
         });
       }
     });
+  }
+
+  getToppingsIds(pizza: Pizza): string[] {
+    let toppingsIds: string[] = [];
+    pizza.pizzaIngredients?.forEach(pizzaIngredient => {
+      toppingsIds.push(<string>pizzaIngredient.ingredient?.ingredientId);
+    });
+    return toppingsIds;
   }
 
 }

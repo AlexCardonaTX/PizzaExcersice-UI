@@ -41,4 +41,12 @@ export class PizzaService {
     return this.http.delete(url);
   }
 
+  public updatePizzaToppings(id: string, toppingsIds: string[]) {
+    const url = `${environment.API_URL}/pizza/${id}/ingredients`;
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    }
+    return this.http.put(url, JSON.stringify(toppingsIds), httpOptions);
+  }
+
 }

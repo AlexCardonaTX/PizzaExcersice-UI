@@ -48,7 +48,7 @@ export class EditDialogComponent implements OnInit {
     this.modalRef.close(
       {
         state: state,
-        name: this.pizza
+        newPizza: this.pizza
       }
     );
   }
