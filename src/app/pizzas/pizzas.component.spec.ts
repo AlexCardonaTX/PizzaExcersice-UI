@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { Pizza } from '../models/Pizza';
 import { PizzaService } from '../services/pizza.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 
 import { PizzasComponent } from './pizzas.component';
 
@@ -11,13 +13,12 @@ describe('PizzasComponent', () => {
   let MdbModalServiceStub: MdbModalService;
   let PizzaServiceStub: PizzaService;
 
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ PizzasComponent ],
+      imports: [ HttpClientTestingModule, MdbModalModule ],
       providers: [ 
-        { provide: MdbModalService, useValue: MdbModalServiceStub }, 
-        { provide: PizzaService, useValue: PizzaServiceStub }
+        { provide: PizzaService }
       ],
     })
     .compileComponents();
@@ -29,7 +30,7 @@ describe('PizzasComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should generate a Pizza description', () => {
+  it('should generate a pizza description with toppings names separeted with commas', () => {
     const pizza: Pizza = {
       "pizzaId": "e4c03fc0-b8b0-4646-85bb-435166c6471b",
       "pizzaName": "Napolitan",
@@ -50,7 +51,6 @@ describe('PizzasComponent', () => {
         }
       ]
     };
-
     const pizzaComponent = new PizzasComponent(PizzaServiceStub, MdbModalServiceStub);
     const summary = pizzaComponent.generateToppingsSummary(pizza);
     expect(summary).toMatch("Extra Cheese, Olive");
