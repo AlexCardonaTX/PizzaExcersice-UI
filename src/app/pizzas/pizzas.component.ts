@@ -5,6 +5,8 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
 import { CreateDialogComponent } from '../create-dialog/create-dialog.component';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { Pizza } from '../models/Pizza';
+import { Notification } from '../models/Notification';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-pizzas',
@@ -17,7 +19,8 @@ export class PizzasComponent implements OnInit {
 
   constructor(
     private pizzaService: PizzaService,
-    private modalService: MdbModalService
+    private modalService: MdbModalService,
+    private notificationService: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -45,8 +48,20 @@ export class PizzasComponent implements OnInit {
         this.pizzaService.deletePizza(pizza.pizzaId).subscribe(
           response => {
           this.pizzaService.getAll();
+          const notification: Notification = {
+            message: "The Pizza was deleted",
+            type: "alert-info",
+            hide: false
+          };
+          this.notificationService.newNotification(notification);
         }, error => {
           console.error(error);
+          const notification: Notification = {
+            message: "Unexpected Error",
+            type: "alert-danger",
+            hide: false
+          };
+          this.notificationService.newNotification(notification);
         });
       }
     });
@@ -66,8 +81,20 @@ export class PizzasComponent implements OnInit {
         this.pizzaService.createPizza(response.name).subscribe(
           response => {
           this.pizzaService.getAll();
+          const notification: Notification = {
+            message: "The Pizza was created",
+            type: "alert-info",
+            hide: false
+          };
+          this.notificationService.newNotification(notification);
         }, error => {
           console.log(response);
+          const notification: Notification = {
+            message: "Unexpected Error",
+            type: "alert-danger",
+            hide: false
+          };
+          this.notificationService.newNotification(notification);
         });
       }
     });
@@ -96,8 +123,20 @@ export class PizzasComponent implements OnInit {
         this.pizzaService.updatePizzaToppings(<string>pizza.pizzaId, toppings).subscribe(
           response => {
           this.pizzaService.getAll();
+          const notification: Notification = {
+            message: "Pizza Toppings where updated",
+            type: "alert-info",
+            hide: false
+          };
+          this.notificationService.newNotification(notification);
         }, error => {
           console.log(response);
+          const notification: Notification = {
+            message: "Unexpected Error",
+            type: "alert-danger",
+            hide: false
+          };
+          this.notificationService.newNotification(notification);
         });
       }
     });

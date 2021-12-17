@@ -4,6 +4,8 @@ import { ToppingService } from '../services/topping.service';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { CreateDialogComponent } from '../create-dialog/create-dialog.component';
+import { NotificationService } from '../services/notification.service';
+import { Notification } from '../models/Notification';
 
 @Component({
   selector: 'app-toppings',
@@ -16,7 +18,8 @@ export class ToppingsComponent implements OnInit {
 
   constructor(
     private toppingService: ToppingService,
-    private modalService: MdbModalService
+    private modalService: MdbModalService,
+    private notificationService: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -44,8 +47,29 @@ export class ToppingsComponent implements OnInit {
         this.toppingService.deleteTopping(topping.ingredientId).subscribe(
           response => {
           this.toppingService.getAll();
+          const notification: Notification = {
+            message: "The Topping was deleted",
+            type: "alert-info",
+            hide: false
+          };
+          this.notificationService.newNotification(notification);
         }, error => {
           console.error(error);
+          if (error.status == 405) {
+            const notification: Notification = {
+              message: "The Topping can't be deleted",
+              type: "alert-danger",
+              hide: false
+            };
+            this.notificationService.newNotification(notification);
+          } else {
+            const notification: Notification = {
+              message: "Unexpected Error",
+              type: "alert-danger",
+              hide: false
+            };
+            this.notificationService.newNotification(notification);
+          }
         });
       }
     });
@@ -65,8 +89,20 @@ export class ToppingsComponent implements OnInit {
         this.toppingService.createTopping(response.name).subscribe(
           response => {
           this.toppingService.getAll();
+          const notification: Notification = {
+            message: "The Topping was created",
+            type: "alert-info",
+            hide: false
+          };
+          this.notificationService.newNotification(notification);
         }, error => {
           console.log(response);
+          const notification: Notification = {
+            message: "Unexpected Error",
+            type: "alert-danger",
+            hide: false
+          };
+          this.notificationService.newNotification(notification);
         });
       }
     });
