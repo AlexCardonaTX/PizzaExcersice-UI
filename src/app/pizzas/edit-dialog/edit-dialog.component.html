@@ -1,0 +1,50 @@
+<div class="modal-header">
+  <h5 class="modal-title">Edit Pizza Toppings</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="modalRef.close(false)"
+  ></button>
+</div>
+
+<div class="modal-body">
+  <div class="md-form mb-5">
+    
+    <div>
+      Toppings:
+      <form [formGroup]="validatingForm" class="form__input">
+      <select class="form-select" formControlName="Topping">
+        <option *ngFor="let topping of toppings" value="{{topping.ingredientId}}">
+          {{ topping.ingredientName }}
+        </option>
+      </select>
+      <button type="button" class="btn btn-primary" (click)="addTopping()">
+        Add
+      </button>
+    </form>
+    </div>
+
+    <div class="modal__list">
+      <div *ngFor="let pizzaTopping of pizza?.pizzaIngredients" class="list__item">
+        {{ pizzaTopping.ingredient?.ingredientName }}
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="removeTopping(pizzaTopping)"
+        ></button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="close(false)">
+    Cancel
+  </button>
+  <button type="button" class="btn btn-primary" (click)="close(true)">
+    Confirm
+  </button>
+</div>
