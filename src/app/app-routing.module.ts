@@ -4,8 +4,10 @@ import { PizzasComponent } from './pizzas/pizzas.component';
 import { ToppingsComponent } from './toppings/toppings.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/pizzas', pathMatch: 'full' },
+  { path: '**', redirectTo: '/pizzas', pathMatch: 'full' },
   { path: 'toppings', component: ToppingsComponent },
-  { path: 'pizzas', component: PizzasComponent }
+  { path: 'pizzas', component: PizzasComponent },
 ];
 
 @NgModule({
