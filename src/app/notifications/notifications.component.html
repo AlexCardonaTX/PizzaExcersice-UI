@@ -1,0 +1,15 @@
+<div 
+  [ngClass]="{ 
+    'hide' : notification.hide
+  }"
+  class="alert {{notification.type}}" 
+  role="alert"
+>
+  {{ notification.message }}
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="clearNotification()"
+  ></button>
+</div>
