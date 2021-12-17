@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { Pizza } from '../models/Pizza';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PizzaService {
-  _pizzasSubject: Subject<Pizza[]> = new Subject()
+  _pizzasSubject: BehaviorSubject<Pizza[]> = new BehaviorSubject(<Pizza[]>[]);
 
   constructor(private http: HttpClient) { }
 
