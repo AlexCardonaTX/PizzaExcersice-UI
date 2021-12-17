@@ -10,12 +10,14 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { CreateDialogComponent } from './create-dialog/create-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PizzasModule } from './pizzas/pizzas.module';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ConfirmDialogComponent,
-    CreateDialogComponent
+    CreateDialogComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,
