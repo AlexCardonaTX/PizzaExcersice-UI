@@ -6,12 +6,14 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 
 import { PizzasComponent } from './pizzas.component';
+import { NotificationService } from '../services/notification.service';
 
 describe('PizzasComponent', () => {
   let component: PizzasComponent;
   let fixture: ComponentFixture<PizzasComponent>;
   let MdbModalServiceStub: MdbModalService;
   let PizzaServiceStub: PizzaService;
+  let NotificationServiceStub: NotificationService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -51,7 +53,7 @@ describe('PizzasComponent', () => {
         }
       ]
     };
-    const pizzaComponent = new PizzasComponent(PizzaServiceStub, MdbModalServiceStub);
+    const pizzaComponent = new PizzasComponent(PizzaServiceStub, MdbModalServiceStub, NotificationServiceStub);
     const summary = pizzaComponent.generateToppingsSummary(pizza);
     expect(summary).toMatch("Extra Cheese, Olive");
   });
