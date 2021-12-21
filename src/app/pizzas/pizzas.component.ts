@@ -101,7 +101,7 @@ export class PizzasComponent implements OnInit {
   }
 
   generateToppingsSummary(pizza: Pizza) {
-    let names: string[] = [];
+    const names: string[] = [];
     pizza.pizzaIngredients?.forEach(pizzaTopping => {
       const toppingName = pizzaTopping.ingredient?.ingredientName;
       if (toppingName) {
@@ -143,7 +143,7 @@ export class PizzasComponent implements OnInit {
   }
 
   getToppingsIds(pizza: Pizza): string[] {
-    let toppingsIds: string[] = [];
+    const toppingsIds: string[] = [];
     pizza.pizzaIngredients?.forEach(pizzaIngredient => {
       toppingsIds.push(<string>pizzaIngredient.ingredient?.ingredientId);
     });
